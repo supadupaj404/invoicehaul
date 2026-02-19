@@ -55,11 +55,7 @@ const WizardProgress = ({ wizard }: WizardProgressProps) => {
         if (!step.isValid) {
             return "destructive";
         }
-        if (step.id === activeStep) {
-            return "default";
-        } else {
-            return "outline";
-        }
+        return "outline";
     };
 
     /**
@@ -108,7 +104,7 @@ const WizardProgress = ({ wizard }: WizardProgressProps) => {
                 <div key={step.id} className="flex items-center">
                     <BaseButton
                         variant={returnButtonVariant(step)}
-                        className="w-auto"
+                        className={`w-auto ${step.id === activeStep ? "bg-[#1a1a1a] text-white hover:bg-[#333] border-[#1a1a1a]" : ""}`}
                         onClick={() => {
                             wizard.goToStep(step.id);
                         }}

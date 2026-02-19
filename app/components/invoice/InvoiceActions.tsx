@@ -105,7 +105,7 @@ const InvoiceActions = () => {
             </BaseButton>
           </div>
 
-          <div className="w-full">
+          <div className="w-full mt-4">
             {/* Live preview and Final pdf */}
             <PdfViewer />
           </div>

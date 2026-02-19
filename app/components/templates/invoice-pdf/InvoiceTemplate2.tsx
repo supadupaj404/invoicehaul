@@ -33,7 +33,7 @@ const InvoiceTemplate2 = (data: InvoiceType) => {
                         />
                     )}
 
-                    <h1 className="mt-2 text-lg md:text-xl font-semibold text-green-500">
+                    <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-900">
                         {sender.name}
                     </h1>
                 </div>

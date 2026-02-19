@@ -29,7 +29,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
 							className='mb-2'
 						/>
 					)}
-					<h1 className='text-xl font-bold text-green-600'>{sender.name}</h1>
+					<h1 className='text-xl font-bold text-gray-900'>{sender.name}</h1>
 					{(sender as any).mcNumber && (
 						<p className='text-xs text-gray-500' style={{ fontFamily: "monospace" }}>
 							MC# {(sender as any).mcNumber}
@@ -50,7 +50,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
 				</div>
 				<div className='text-right'>
 					<h2 className='text-3xl font-bold text-gray-800'>INVOICE</h2>
-					<p className='text-lg text-green-600 mt-1' style={{ fontFamily: "monospace" }}>
+					<p className='text-lg text-gray-800 mt-1' style={{ fontFamily: "monospace" }}>
 						#{details.invoiceNumber}
 					</p>
 					{(details as any).loadNumber && (
