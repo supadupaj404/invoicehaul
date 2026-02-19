@@ -4,7 +4,7 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Components
-import { BaseButton, SendPdfToEmailModal, Subheading } from "@/app/components";
+import { BaseButton, Subheading } from "@/app/components";
 
 // Contexts
 import { useInvoiceContext } from "@/contexts/InvoiceContext";
@@ -14,7 +14,6 @@ import {
     BookmarkIcon,
     DownloadCloudIcon,
     Eye,
-    Mail,
     MoveLeft,
     Printer,
 } from "lucide-react";
@@ -27,7 +26,6 @@ export default function FinalPdf() {
         downloadPdf,
         printPdf,
         saveInvoice,
-        sendPdfToMail,
     } = useInvoiceContext();
 
     return (
@@ -84,17 +82,6 @@ export default function FinalPdf() {
                     <BookmarkIcon className="w-5 h-5" />
                     Save
                 </BaseButton>
-
-                <SendPdfToEmailModal sendPdfToMail={sendPdfToMail}>
-                    <BaseButton
-                        tooltipLabel="Send invoice PDF to mail"
-                        size="sm"
-                        variant={"outline"}
-                    >
-                        <Mail className="w-5 h-5" />
-                        Send to mail
-                    </BaseButton>
-                </SendPdfToEmailModal>
             </div>
             <AspectRatio ratio={1 / 1.4}>
                 <iframe

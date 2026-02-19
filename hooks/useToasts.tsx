@@ -1,13 +1,7 @@
 // ShadCn
-import { ToastAction } from "@/components/ui/toast";
 import { toast } from "@/components/ui/use-toast";
 
 const useToasts = () => {
-    type SendErrorType = {
-        email: string;
-        sendPdfToMail: (email: string) => void;
-    };
-
     const newInvoiceSuccess = () => {
         toast({
             variant: "default",
@@ -41,35 +35,11 @@ const useToasts = () => {
         });
     };
 
-    const sendPdfSuccess = () => {
-        toast({
-            variant: "default",
-            title: "Email sent",
-            description: "Your invoice has been sent to the specified email",
-        });
-    };
-
-    const sendPdfError = ({ email, sendPdfToMail }: SendErrorType) => {
-        toast({
-            variant: "destructive",
-            title: "Error",
-            description: "Something went wrong. Try again in a moment",
-            action: (
-                <ToastAction
-                    onClick={() => sendPdfToMail(email)}
-                    altText="Try again"
-                >
-                    Try again
-                </ToastAction>
-            ),
-        });
-    };
-
     const importInvoiceError = () => {
         toast({
             variant: "destructive",
             title: "Error",
-            description: "Something went importing the invoice. Make sure the file is a valid Invoify JSON export",
+            description: "Something went importing the invoice. Make sure the file is a valid InvoiceHaul JSON export",
         });
     };
 
@@ -78,8 +48,6 @@ const useToasts = () => {
         pdfGenerationSuccess,
         saveInvoiceSuccess,
         modifiedInvoiceSuccess,
-        sendPdfSuccess,
-        sendPdfError,
         importInvoiceError,
     };
 };

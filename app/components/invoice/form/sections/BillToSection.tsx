@@ -42,41 +42,41 @@ const BillToSection = () => {
 
     return (
         <section className="flex flex-col gap-3">
-            <Subheading>{_t("form.steps.fromAndTo.billTo")}:</Subheading>
+            <Subheading>Broker / Shipper:</Subheading>
             <FormInput
                 name="receiver.name"
-                label={_t("form.steps.fromAndTo.name")}
-                placeholder="Receiver name"
+                label="Broker Name"
+                placeholder="e.g. RXO, Echo, Coyote"
             />
             <FormInput
                 name="receiver.address"
                 label={_t("form.steps.fromAndTo.address")}
-                placeholder="Receiver address"
+                placeholder="Broker address"
             />
             <FormInput
                 name="receiver.zipCode"
                 label={_t("form.steps.fromAndTo.zipCode")}
-                placeholder="Receiver zip code"
+                placeholder="Broker zip code"
             />
             <FormInput
                 name="receiver.city"
                 label={_t("form.steps.fromAndTo.city")}
-                placeholder="Receiver city"
+                placeholder="Broker city"
             />
             <FormInput
                 name="receiver.country"
-                label={_t("form.steps.fromAndTo.country")}
-                placeholder="Receiver country"
+                label="State"
+                placeholder="Broker state"
             />
             <FormInput
                 name="receiver.email"
                 label={_t("form.steps.fromAndTo.email")}
-                placeholder="Receiver email"
+                placeholder="Broker email"
             />
             <FormInput
                 name="receiver.phone"
                 label={_t("form.steps.fromAndTo.phone")}
-                placeholder="Receiver phone number"
+                placeholder="Broker phone number"
                 type="text"
                 inputMode="tel"
                 pattern="[0-9+\-\(\)\s]*"

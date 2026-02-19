@@ -35,7 +35,13 @@ const InvoiceDetails = () => {
                     <FormInput
                         name="details.invoiceNumber"
                         label={_t("form.steps.invoiceDetails.invoiceNumber")}
-                        placeholder="Invoice number"
+                        placeholder="INV-001"
+                    />
+
+                    <FormInput
+                        name="details.loadNumber"
+                        label="Load #"
+                        placeholder="Load reference number"
                     />
 
                     <DatePickerFormField

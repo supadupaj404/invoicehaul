@@ -9,15 +9,12 @@ export const ENV = process.env.NODE_ENV;
 /**
  * Websites
  */
-export const BASE_URL = "https://invoify.vercel.app";
-export const AUTHOR_WEBSITE = "https://aliabb.vercel.app";
-export const AUTHOR_GITHUB = "https://github.com/al1abb";
+export const BASE_URL = "https://invoicehaul.com";
 
 /**
  * API endpoints
  */
 export const GENERATE_PDF_API = "/api/invoice/generate";
-export const SEND_PDF_API = "/api/invoice/send";
 export const EXPORT_INVOICE_API = "/api/invoice/export";
 
 /**
@@ -29,7 +26,7 @@ export const CURRENCIES_API =
 /**
  * Local storage
  */
-export const LOCAL_STORAGE_INVOICE_DRAFT_KEY = "invoify:invoiceDraft";
+export const LOCAL_STORAGE_INVOICE_DRAFT_KEY = "invoicehaul:invoiceDraft";
 
 /**
  * Tailwind
@@ -42,32 +39,7 @@ export const TAILWIND_CDN =
  */
 export const GOOGLE_SC_VERIFICATION = process.env.GOOGLE_SC_VERIFICATION;
 
-/**
- * Nodemailer
- */
-export const NODEMAILER_EMAIL = process.env.NODEMAILER_EMAIL;
-export const NODEMAILER_PW = process.env.NODEMAILER_PW;
 
-/**
- * I18N
- */
-export const LOCALES = [
-  { code: "en", name: "English" },
-  { code: "de", name: "Deutsch" },
-  { code: "it", name: "Italiano" },
-  { code: "es", name: "Español" },
-  { code: "ca", name: "Català" },
-  { code: "fr", name: "Français" },
-  { code: "ar", name: "العربية" },
-  { code: "pl", name: "Polish" },
-  { code: "pt-BR", name: "Português (Brasil)" },
-  { code: "tr", name: "Türkçe" },
-  { code: "zh-CN", name: "简体中文" },
-  { code: "ja", name: "日本語" },
-  { code: "nb-NO", name: "Norwegian (bokmål)" },
-  { code: "nn-NO", name: "Norwegian (nynorsk)" },
-];
-export const DEFAULT_LOCALE = LOCALES[0].code;
 
 /**
  * Signature variables
@@ -125,6 +97,8 @@ export const FORM_DEFAULT_VALUES = {
     country: "",
     email: "",
     phone: "",
+    mcNumber: "",
+    dotNumber: "",
     customInputs: [],
   },
   receiver: {
@@ -142,17 +116,17 @@ export const FORM_DEFAULT_VALUES = {
     invoiceNumber: "",
     invoiceDate: "",
     dueDate: "",
+    loadNumber: "",
     items: [
       {
-        name: "",
+        name: "Freight Charges",
         description: "",
-        quantity: 0,
+        quantity: 1,
         unitPrice: 0,
         total: 0,
       },
     ],
     currency: "USD",
-    language: "English",
     taxDetails: {
       amount: 0,
       amountType: "amount",
@@ -230,7 +204,6 @@ export const FORM_FILL_VALUES = {
       },
     ],
     currency: "USD",
-    language: "English",
     taxDetails: {
       amount: 15,
       amountType: "percentage",

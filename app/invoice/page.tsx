@@ -1,7 +1,7 @@
 // Components
 import { InvoiceMain } from "@/app/components";
 
-export default function Home() {
+export default function InvoicePage() {
     return (
         <main className="py-10 lg:container">
             <InvoiceMain />

@@ -57,7 +57,6 @@ import Subheading from "./reusables/Subheading";
 /* =========================
    * Modals & Alerts
    ========================= */
-import SendPdfToEmailModal from "./modals/email/SendPdfToEmailModal";
 
 // Import/Export
 import InvoiceLoaderModal from "./modals/invoice/InvoiceLoaderModal";
@@ -90,8 +89,6 @@ import InvoiceLayout from "./templates/invoice-pdf/InvoiceLayout";
 import InvoiceTemplate1 from "./templates/invoice-pdf/InvoiceTemplate1";
 import InvoiceTemplate2 from "./templates/invoice-pdf/InvoiceTemplate2";
 
-// Email templates
-import SendPdfEmail from "./templates/email/SendPdfEmail";
 
 /* =========================
    ? DEV ONLY
@@ -131,7 +128,6 @@ export {
     ThemeSwitcher,
     LanguageSelector,
     Subheading,
-    SendPdfToEmailModal,
     InvoiceLoaderModal,
     InvoiceExportModal,
     ImportJsonButton,
@@ -146,6 +142,5 @@ export {
     InvoiceLayout,
     InvoiceTemplate1,
     InvoiceTemplate2,
-    SendPdfEmail,
     DevDebug,
 };

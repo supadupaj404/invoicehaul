@@ -41,11 +41,21 @@ const BillFromSection = () => {
 
     return (
         <section className="flex flex-col gap-3">
-            <Subheading>{_t("form.steps.fromAndTo.billFrom")}:</Subheading>
+            <Subheading>Carrier (You):</Subheading>
             <FormInput
                 name="sender.name"
-                label={_t("form.steps.fromAndTo.name")}
-                placeholder="Your name"
+                label="Carrier Name"
+                placeholder="e.g. Nate's Transportation LLC"
+            />
+            <FormInput
+                name="sender.mcNumber"
+                label="MC #"
+                placeholder="MC-123456"
+            />
+            <FormInput
+                name="sender.dotNumber"
+                label="DOT #"
+                placeholder="1234567"
             />
             <FormInput
                 name="sender.address"
@@ -64,8 +74,8 @@ const BillFromSection = () => {
             />
             <FormInput
                 name="sender.country"
-                label={_t("form.steps.fromAndTo.country")}
-                placeholder="Your country"
+                label="State"
+                placeholder="Your state"
             />
             <FormInput
                 name="sender.email"

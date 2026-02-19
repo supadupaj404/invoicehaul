@@ -3,16 +3,27 @@ import {
     Alex_Brush,
     Dancing_Script,
     Great_Vibes,
-    Outfit,
+    Inter,
+    JetBrains_Mono,
     Parisienne,
 } from "next/font/google";
 
-// Default Fonts
-export const outfit = Outfit({
+// Primary body font
+export const inter = Inter({
     subsets: ["latin"],
     display: "swap",
-    adjustFontFallback: false,
+    variable: "--font-inter",
 });
+
+// Monospace for numeric data
+export const jetbrainsMono = JetBrains_Mono({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-jetbrains-mono",
+});
+
+// Keep outfit export name for backward compatibility with layout.tsx class usage
+export const outfit = inter;
 
 // Signature fonts
 export const dancingScript = Dancing_Script({

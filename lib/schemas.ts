@@ -94,6 +94,8 @@ const InvoiceSenderSchema = z.object({
     country: fieldValidators.country,
     email: fieldValidators.email,
     phone: fieldValidators.phone,
+    mcNumber: fieldValidators.stringOptional,
+    dotNumber: fieldValidators.stringOptional,
     customInputs: z.array(CustomInputSchema).optional(),
 });
 
@@ -149,8 +151,8 @@ const InvoiceDetailsSchema = z.object({
     invoiceDate: fieldValidators.date,
     dueDate: fieldValidators.date,
     purchaseOrderNumber: fieldValidators.stringOptional,
+    loadNumber: fieldValidators.stringOptional,
     currency: fieldValidators.string,
-    language: fieldValidators.string,
     items: z.array(ItemSchema),
     paymentInformation: PaymentInformationSchema.optional(),
     taxDetails: TaxDetailsSchema.optional(),

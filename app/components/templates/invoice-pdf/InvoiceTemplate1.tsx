@@ -17,7 +17,8 @@ const InvoiceTemplate = (data: InvoiceType) => {
 
 	return (
 		<InvoiceLayout data={data}>
-			<div className='flex justify-between'>
+			{/* Header — Carrier identity + Invoice title */}
+			<div className='flex justify-between items-start border-b-2 border-blue-600 pb-4 mb-6'>
 				<div>
 					{details.invoiceLogo && (
 						<img
@@ -25,59 +26,84 @@ const InvoiceTemplate = (data: InvoiceType) => {
 							width={140}
 							height={100}
 							alt={`Logo of ${sender.name}`}
+							className='mb-2'
 						/>
 					)}
-					<h1 className='mt-2 text-lg md:text-xl font-semibold text-blue-600'>{sender.name}</h1>
-				</div>
-				<div className='text-right'>
-					<h2 className='text-2xl md:text-3xl font-semibold text-gray-800'>Invoice #</h2>
-					<span className='mt-1 block text-gray-500'>{details.invoiceNumber}</span>
-					<address className='mt-4 not-italic text-gray-800'>
+					<h1 className='text-xl font-bold text-blue-600'>{sender.name}</h1>
+					{(sender as any).mcNumber && (
+						<p className='text-xs text-gray-500' style={{ fontFamily: "monospace" }}>
+							MC# {(sender as any).mcNumber}
+						</p>
+					)}
+					{(sender as any).dotNumber && (
+						<p className='text-xs text-gray-500' style={{ fontFamily: "monospace" }}>
+							DOT# {(sender as any).dotNumber}
+						</p>
+					)}
+					<address className='mt-1 text-sm not-italic text-gray-600'>
 						{sender.address}
 						<br />
-						{sender.zipCode}, {sender.city}
-						<br />
-						{sender.country}
-						<br />
+						{sender.city}, {sender.country} {sender.zipCode}
 					</address>
+					<p className='text-sm text-gray-600'>{sender.phone}</p>
+					<p className='text-sm text-gray-600'>{sender.email}</p>
+				</div>
+				<div className='text-right'>
+					<h2 className='text-3xl font-bold text-gray-800'>INVOICE</h2>
+					<p className='text-lg text-blue-600 mt-1' style={{ fontFamily: "monospace" }}>
+						#{details.invoiceNumber}
+					</p>
+					{(details as any).loadNumber && (
+						<p className='text-sm text-gray-500 mt-1'>
+							Load #: <span style={{ fontFamily: "monospace" }}>{(details as any).loadNumber}</span>
+						</p>
+					)}
 				</div>
 			</div>
 
-			<div className='mt-6 grid sm:grid-cols-2 gap-3'>
+			{/* Broker + Dates */}
+			<div className='grid grid-cols-2 gap-6 mb-6'>
 				<div>
-					<h3 className='text-lg font-semibold text-gray-800'>Bill to:</h3>
-					<h3 className='text-lg font-semibold text-gray-800'>{receiver.name}</h3>
-					{}
-					<address className='mt-2 not-italic text-gray-500'>
+					<p className='text-xs font-bold uppercase tracking-widest text-gray-400 mb-1'>Bill To</p>
+					<h3 className='font-bold text-gray-900'>{receiver.name}</h3>
+					<address className='text-sm not-italic text-gray-600'>
 						{receiver.address && receiver.address.length > 0 ? receiver.address : null}
-						{receiver.zipCode && receiver.zipCode.length > 0 ? `, ${receiver.zipCode}` : null}
-						<br />
-						{receiver.city}, {receiver.country}
-						<br />
+						{receiver.address && <br />}
+						{receiver.city}, {receiver.country} {receiver.zipCode}
 					</address>
+					{receiver.email && <p className='text-sm text-gray-600 mt-1'>{receiver.email}</p>}
 				</div>
-				<div className='sm:text-right space-y-2'>
-					<div className='grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2'>
-						<dl className='grid sm:grid-cols-6 gap-x-3'>
-							<dt className='col-span-3 font-semibold text-gray-800'>Invoice date:</dt>
-							<dd className='col-span-3 text-gray-500'>
+				<div>
+					<dl className='space-y-1 text-sm'>
+						<div className='flex justify-between'>
+							<dt className='font-semibold text-gray-700'>Invoice Date:</dt>
+							<dd className='text-gray-600' style={{ fontFamily: "monospace" }}>
 								{new Date(details.invoiceDate).toLocaleDateString("en-US", DATE_OPTIONS)}
 							</dd>
-						</dl>
-						<dl className='grid sm:grid-cols-6 gap-x-3'>
-							<dt className='col-span-3 font-semibold text-gray-800'>Due date:</dt>
-							<dd className='col-span-3 text-gray-500'>
+						</div>
+						<div className='flex justify-between'>
+							<dt className='font-semibold text-gray-700'>Due Date:</dt>
+							<dd className='text-gray-600' style={{ fontFamily: "monospace" }}>
 								{new Date(details.dueDate).toLocaleDateString("en-US", DATE_OPTIONS)}
 							</dd>
-						</dl>
-					</div>
+						</div>
+						{details.purchaseOrderNumber && (
+							<div className='flex justify-between'>
+								<dt className='font-semibold text-gray-700'>Broker Ref #:</dt>
+								<dd className='text-gray-600' style={{ fontFamily: "monospace" }}>
+									{details.purchaseOrderNumber}
+								</dd>
+							</div>
+						)}
+					</dl>
 				</div>
 			</div>
 
+			{/* Line Items Table */}
 			<div className='mt-3'>
 				<div className='border border-gray-200 p-1 rounded-lg space-y-1'>
 					<div className='hidden sm:grid sm:grid-cols-5'>
-						<div className='sm:col-span-2 text-xs font-medium text-gray-500 uppercase'>Item</div>
+						<div className='sm:col-span-2 text-xs font-medium text-gray-500 uppercase'>Description of Service</div>
 						<div className='text-left text-xs font-medium text-gray-500 uppercase'>Qty</div>
 						<div className='text-left text-xs font-medium text-gray-500 uppercase'>Rate</div>
 						<div className='text-right text-xs font-medium text-gray-500 uppercase'>Amount</div>
@@ -110,6 +136,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
 				</div>
 			</div>
 
+			{/* Totals */}
 			<div className='mt-2 flex sm:justify-end'>
 				<div className='sm:text-right space-y-2'>
 					<div className='grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2'>
@@ -151,8 +178,8 @@ const InvoiceTemplate = (data: InvoiceType) => {
 							</dl>
 						)}
 						<dl className='grid sm:grid-cols-5 gap-x-3'>
-							<dt className='col-span-3 font-semibold text-gray-800'>Total:</dt>
-							<dd className='col-span-2 text-gray-500'>
+							<dt className='col-span-3 font-bold text-gray-900 text-base'>Total:</dt>
+							<dd className='col-span-2 font-bold text-gray-900 text-base'>
 								{formatNumberWithCommas(Number(details.totalAmount))} {details.currency}
 							</dd>
 						</dl>
@@ -170,31 +197,40 @@ const InvoiceTemplate = (data: InvoiceType) => {
 				</div>
 			</div>
 
-			<div>
-				<div className='my-4'>
-					<div className='my-2'>
-						<p className='font-semibold text-blue-600'>Additional notes:</p>
-						<p className='font-regular text-gray-800'>{details.additionalNotes}</p>
-					</div>
-					<div className='my-2'>
-						<p className='font-semibold text-blue-600'>Payment terms:</p>
-						<p className='font-regular text-gray-800'>{details.paymentTerms}</p>
-					</div>
-					<div className='my-2'>
-						<span className='font-semibold text-md text-gray-800'>
-							Please send the payment to this address
-							<p className='text-sm'>Bank: {details.paymentInformation?.bankName}</p>
-							<p className='text-sm'>Account name: {details.paymentInformation?.accountName}</p>
-							<p className='text-sm'>Account no: {details.paymentInformation?.accountNumber}</p>
-						</span>
-					</div>
+			{/* Remittance / Payment Info */}
+			{details.paymentInformation?.bankName && (
+				<div className='mt-6 p-4 rounded-lg border border-blue-200' style={{ backgroundColor: "#eff6ff" }}>
+					<p className='text-xs font-bold uppercase tracking-widest text-blue-600 mb-2'>Remittance Information</p>
+					<p className='text-sm text-gray-800'>Bank: {details.paymentInformation.bankName}</p>
+					<p className='text-sm text-gray-800'>Account: {details.paymentInformation.accountName}</p>
+					<p className='text-sm text-gray-800' style={{ fontFamily: "monospace" }}>
+						Account #: {details.paymentInformation.accountNumber}
+					</p>
 				</div>
+			)}
+
+			{/* Notes + Terms */}
+			<div className='mt-4 grid grid-cols-2 gap-4 text-sm'>
+				<div>
+					<p className='font-semibold text-blue-600'>Payment Terms:</p>
+					<p className='text-gray-800'>{details.paymentTerms}</p>
+				</div>
+				{details.additionalNotes && (
+					<div>
+						<p className='font-semibold text-blue-600'>Notes:</p>
+						<p className='text-gray-800'>{details.additionalNotes}</p>
+					</div>
+				)}
+			</div>
+
+			{/* Contact */}
+			<div className='mt-4'>
 				<p className='text-gray-500 text-sm'>
-					If you have any questions concerning this invoice, use the following contact information:
+					Questions about this invoice? Contact:
 				</p>
 				<div>
-					<p className='block text-sm font-medium text-gray-800'>{sender.email}</p>
-					<p className='block text-sm font-medium text-gray-800'>{sender.phone}</p>
+					<p className='text-sm font-medium text-gray-800'>{sender.email}</p>
+					<p className='text-sm font-medium text-gray-800'>{sender.phone}</p>
 				</div>
 			</div>
 
