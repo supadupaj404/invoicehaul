@@ -13,7 +13,7 @@ const BaseNavbar = () => {
 
     return (
         <header className="sticky top-0 z-[99] border-b border-[hsl(var(--border))] bg-white/80 backdrop-blur-xl">
-            <nav className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">
+            <nav className="max-w-[1600px] mx-auto px-4 h-14 relative flex items-center">
                 {/* Left: Logo */}
                 <Link href="/" className="flex items-center gap-2 shrink-0">
                     <div className="w-7 h-7 bg-[#22c55e] rounded-lg flex items-center justify-center">
@@ -29,19 +29,24 @@ const BaseNavbar = () => {
                     </span>
                 </Link>
 
-                {/* Center: Free badge */}
-                <div
-                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-extrabold tracking-tight"
-                    style={{ background: "#22c55e", color: "#ffffff" }}
-                >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    100% Free — No Credit Card Needed
+                {/* Center: Free badge — absolutely centered */}
+                <div className="hidden sm:flex absolute left-1/2 -translate-x-1/2">
+                    <div
+                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-extrabold tracking-tight"
+                        style={{ background: "#22c55e", color: "#ffffff" }}
+                    >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        100% Free — No Credit Card Needed
+                    </div>
                 </div>
 
                 {/* DEV Only */}
                 {devEnv && <DevDebug />}
+
+                {/* Spacer */}
+                <div className="flex-1" />
 
                 {/* Right: FuelTax.app CTA */}
                 <a
