@@ -58,25 +58,6 @@ const BaseFooter = () => {
                             </ul>
                         </div>
 
-                        {/* Company column */}
-                        <div>
-                            <p className="text-[10px] font-bold tracking-widest uppercase mb-4" style={{ color: "#6b7280" }}>
-                                Company
-                            </p>
-                            <ul className="space-y-2.5">
-                                <li>
-                                    <a
-                                        href="https://whetstonedigital.com"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-sm transition-colors hover:text-white"
-                                        style={{ color: "#9ca3af" }}
-                                    >
-                                        Whetstone Digital
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
