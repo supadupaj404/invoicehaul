@@ -1,16 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
-
-// RHF
-import { useFormContext, useWatch } from "react-hook-form";
-
 // ShadCn
 import {
     Card,
     CardContent,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 // React Wizard
 import { Wizard } from "react-use-wizard";
@@ -36,28 +30,9 @@ import { useInvoiceContext } from "@/contexts/InvoiceContext";
 // Icons
 import { FolderUp, Plus, RotateCcw } from "lucide-react";
 
-// Types
-import { InvoiceType } from "@/types";
-
 const InvoiceForm = () => {
     const { _t } = useTranslationContext();
     const { invoicePdfLoading, newInvoice } = useInvoiceContext();
-
-    const { control } = useFormContext();
-
-    // Get invoice number variable
-    const invoiceNumber = useWatch({
-        name: "details.invoiceNumber",
-        control,
-    });
-
-    const invoiceNumberLabel = useMemo(() => {
-        if (invoiceNumber) {
-            return `#${invoiceNumber}`;
-        } else {
-            return _t("form.newInvBadge");
-        }
-    }, [invoiceNumber]);
 
     return (
         <div className="w-full xl:w-[55%]">
@@ -66,13 +41,8 @@ const InvoiceForm = () => {
                 <div className="flex items-center justify-between p-4 sm:p-6 pb-3">
                     <div className="flex items-center gap-2.5">
                         <h2 className="text-lg font-bold tracking-tight" style={{ color: "#1a1a1a" }}>
-                            Invoice
+                            Actions
                         </h2>
-                        <Badge variant="secondary" className="w-fit">
-                            <p style={{ fontSize: "12px" }}>
-                                {invoiceNumberLabel}
-                            </p>
-                        </Badge>
                     </div>
 
                     {/* Management buttons — top right */}
