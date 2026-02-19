@@ -1,12 +1,7 @@
 "use client";
 
 // ShadCn
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 // Components
 import {
@@ -30,85 +25,82 @@ const InvoiceActions = () => {
   const { _t } = useTranslationContext();
   return (
     <div className="w-full xl:w-[45%]">
-      <Card className="h-auto xl:sticky xl:top-4 px-2">
-        <CardHeader>
-          <CardTitle>{_t("actions.title")}</CardTitle>
-          <CardDescription>{_t("actions.description")}</CardDescription>
-        </CardHeader>
+      <Card className="h-auto xl:sticky xl:top-4 p-3">
+        {/* Compact toolbar — all buttons in one row */}
+        <div className="flex flex-wrap items-center gap-1.5 mb-3">
+          {/* Generate pdf button — primary action */}
+          <BaseButton
+            type="submit"
+            size="sm"
+            tooltipLabel="Generate your invoice"
+            loading={invoicePdfLoading}
+            loadingText="Generating..."
+          >
+            <FileInput className="w-3.5 h-3.5" />
+            {_t("actions.generatePdf")}
+          </BaseButton>
 
-        <div className="flex flex-col items-center gap-3 px-2 sm:px-0">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {/* Load modal button */}
-            <InvoiceLoaderModal>
-              <BaseButton
-                variant="outline"
-                tooltipLabel="Open load invoice menu"
-                disabled={invoicePdfLoading}
-              >
-                <FolderUp />
-                {_t("actions.loadInvoice")}
-              </BaseButton>
-            </InvoiceLoaderModal>
-
-            {/* Export modal button */}
-            <InvoiceExportModal>
-              <BaseButton
-                variant="outline"
-                tooltipLabel="Open load invoice menu"
-                disabled={invoicePdfLoading}
-              >
-                <Import />
-                {_t("actions.exportInvoice")}
-              </BaseButton>
-            </InvoiceExportModal>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {/* New invoice button */}
-            <NewInvoiceAlert>
-              <BaseButton
-                variant="outline"
-                tooltipLabel="Get a new invoice form"
-                disabled={invoicePdfLoading}
-              >
-                <Plus />
-                {_t("actions.newInvoice")}
-              </BaseButton>
-            </NewInvoiceAlert>
-
-            {/* Reset form button */}
-            <NewInvoiceAlert
-              title="Reset form?"
-              description="This will clear all fields and the saved draft."
-              confirmLabel="Reset"
-              onConfirm={newInvoice}
-            >
-              <BaseButton
-                variant="destructive"
-                tooltipLabel="Reset entire form"
-                disabled={invoicePdfLoading}
-              >
-                <RotateCcw />
-                Reset Form
-              </BaseButton>
-            </NewInvoiceAlert>
-
-            {/* Generate pdf button */}
+          {/* Load modal button */}
+          <InvoiceLoaderModal>
             <BaseButton
-              type="submit"
-              tooltipLabel="Generate your invoice"
-              loading={invoicePdfLoading}
-              loadingText="Generating your invoice"
+              variant="outline"
+              size="sm"
+              tooltipLabel="Open load invoice menu"
+              disabled={invoicePdfLoading}
             >
-              <FileInput />
-              {_t("actions.generatePdf")}
+              <FolderUp className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Load</span>
             </BaseButton>
-          </div>
+          </InvoiceLoaderModal>
 
-          <div className="w-full mt-4">
-            {/* Live preview and Final pdf */}
-            <PdfViewer />
-          </div>
+          {/* Export modal button */}
+          <InvoiceExportModal>
+            <BaseButton
+              variant="outline"
+              size="sm"
+              tooltipLabel="Export invoice"
+              disabled={invoicePdfLoading}
+            >
+              <Import className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Export</span>
+            </BaseButton>
+          </InvoiceExportModal>
+
+          {/* New invoice button */}
+          <NewInvoiceAlert>
+            <BaseButton
+              variant="outline"
+              size="sm"
+              tooltipLabel="Get a new invoice form"
+              disabled={invoicePdfLoading}
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">New</span>
+            </BaseButton>
+          </NewInvoiceAlert>
+
+          {/* Reset form button */}
+          <NewInvoiceAlert
+            title="Reset form?"
+            description="This will clear all fields and the saved draft."
+            confirmLabel="Reset"
+            onConfirm={newInvoice}
+          >
+            <BaseButton
+              variant="ghost"
+              size="sm"
+              tooltipLabel="Reset entire form"
+              disabled={invoicePdfLoading}
+              className="text-red-500 hover:text-red-600 hover:bg-red-50"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </BaseButton>
+          </NewInvoiceAlert>
+        </div>
+
+        {/* Live preview fills remaining space */}
+        <div className="w-full">
+          <PdfViewer />
         </div>
       </Card>
     </div>
