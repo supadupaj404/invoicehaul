@@ -12,8 +12,17 @@ const BaseNavbar = () => {
     }, []);
 
     return (
-        <header className="sticky top-0 z-[99] border-b border-[hsl(var(--border))] bg-white/80 backdrop-blur-xl">
-            <nav className="max-w-[1600px] mx-auto px-4 h-14 relative flex items-center">
+        <header className="sticky top-0 z-[99] px-4 sm:px-6 pt-3">
+            <nav
+                className="max-w-5xl mx-auto h-12 relative flex items-center px-5 rounded-2xl"
+                style={{
+                    background: "rgba(255, 255, 255, 0.85)",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: "1px solid #e5e1dc",
+                    boxShadow: "0 2px 12px rgba(0, 0, 0, 0.06)",
+                }}
+            >
                 {/* Left: Logo */}
                 <Link href="/" className="flex items-center gap-2 shrink-0">
                     <div className="w-7 h-7 bg-[#22c55e] rounded-lg flex items-center justify-center">
