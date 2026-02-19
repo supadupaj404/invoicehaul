@@ -13,8 +13,8 @@ const BaseNavbar = () => {
 
     return (
         <header className="sticky top-0 z-[99] border-b border-[hsl(var(--border))] bg-white/80 backdrop-blur-xl">
-            <nav className="max-w-[1600px] mx-auto px-4 h-14 flex items-center gap-4">
-                {/* Logo */}
+            <nav className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">
+                {/* Left: Logo */}
                 <Link href="/" className="flex items-center gap-2 shrink-0">
                     <div className="w-7 h-7 bg-[#22c55e] rounded-lg flex items-center justify-center">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -29,12 +29,12 @@ const BaseNavbar = () => {
                     </span>
                 </Link>
 
-                {/* Free badge — prominent */}
+                {/* Center: Free badge */}
                 <div
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-extrabold tracking-tight"
                     style={{ background: "#22c55e", color: "#ffffff" }}
                 >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12" />
                     </svg>
                     100% Free — No Credit Card Needed
@@ -43,17 +43,14 @@ const BaseNavbar = () => {
                 {/* DEV Only */}
                 {devEnv && <DevDebug />}
 
-                {/* Spacer */}
-                <div className="flex-1" />
-
-                {/* FuelTax.app CTA */}
+                {/* Right: FuelTax.app CTA */}
                 <a
                     href="https://fueltax.app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hidden md:flex items-center gap-2.5 shrink-0 group"
+                    className="hidden md:flex items-center gap-2 shrink-0 group"
                 >
-                    <span className="text-xs" style={{ color: "#9ca3af" }}>
+                    <span className="text-xs font-semibold" style={{ color: "#6b7280" }}>
                         From the founders of
                     </span>
                     <span
@@ -69,7 +66,7 @@ const BaseNavbar = () => {
                         </svg>
                         FuelTax.app
                     </span>
-                    <span className="hidden lg:inline text-[10px]" style={{ color: "#b0aca6" }}>
+                    <span className="hidden lg:inline text-[10px] font-medium" style={{ color: "#9ca3af" }}>
                         IFTA filing made easy
                     </span>
                 </a>
