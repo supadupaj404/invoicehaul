@@ -52,7 +52,7 @@ const InvoiceForm = () => {
     }, [invoiceNumber]);
 
     return (
-        <div className={`xl:w-[55%]`}>
+        <div className="w-full xl:w-[55%]">
             <Card>
                 <CardHeader>
                     <div className="flex gap-3">
@@ -73,10 +73,13 @@ const InvoiceForm = () => {
                     <div className="space-y-8">
                         <Wizard>
                             <WizardStep>
-                                <div className="flex gap-x-20 gap-y-10">
-                                    <BillFromSection />
-
-                                    <BillToSection />
+                                <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+                                    <div className="flex-1 min-w-0">
+                                        <BillFromSection />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <BillToSection />
+                                    </div>
                                 </div>
                             </WizardStep>
                             <WizardStep>

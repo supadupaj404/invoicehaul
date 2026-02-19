@@ -99,25 +99,18 @@ const WizardProgress = ({ wizard }: WizardProgressProps) => {
     ];
 
     return (
-        <div className="flex flex-wrap justify-around items-center gap-y-3">
-            {steps.map((step, idx) => (
-                <div key={step.id} className="flex items-center">
-                    <BaseButton
-                        variant={returnButtonVariant(step)}
-                        className={`w-auto ${step.id === activeStep ? "bg-[#1a1a1a] text-white hover:bg-[#333] border-[#1a1a1a]" : ""}`}
-                        onClick={() => {
-                            wizard.goToStep(step.id);
-                        }}
-                    >
-                        {step.id + 1}. {step.label}
-                    </BaseButton>
-
-                    {/* {step.id != stepCount - 1 && (
-                        <div>
-                            <Dot />
-                        </div>
-                    )} */}
-                </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+            {steps.map((step) => (
+                <BaseButton
+                    key={step.id}
+                    variant={returnButtonVariant(step)}
+                    className={`w-full text-xs sm:text-sm ${step.id === activeStep ? "bg-[#1a1a1a] text-white hover:bg-[#333] border-[#1a1a1a]" : ""}`}
+                    onClick={() => {
+                        wizard.goToStep(step.id);
+                    }}
+                >
+                    {step.id + 1}. {step.label}
+                </BaseButton>
             ))}
         </div>
     );

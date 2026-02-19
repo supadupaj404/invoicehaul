@@ -29,15 +29,15 @@ const InvoiceActions = () => {
 
   const { _t } = useTranslationContext();
   return (
-    <div className={`xl:w-[45%]`}>
-      <Card className="h-auto sticky top-0 px-2">
+    <div className="w-full xl:w-[45%]">
+      <Card className="h-auto xl:sticky xl:top-4 px-2">
         <CardHeader>
           <CardTitle>{_t("actions.title")}</CardTitle>
           <CardDescription>{_t("actions.description")}</CardDescription>
         </CardHeader>
 
-        <div className="flex flex-col flex-wrap items-center gap-2">
-          <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col items-center gap-3 px-2 sm:px-0">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {/* Load modal button */}
             <InvoiceLoaderModal>
               <BaseButton
@@ -63,7 +63,7 @@ const InvoiceActions = () => {
             </InvoiceExportModal>
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {/* New invoice button */}
             <NewInvoiceAlert>
               <BaseButton
