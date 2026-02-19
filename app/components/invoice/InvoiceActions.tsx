@@ -26,7 +26,7 @@ const InvoiceActions = () => {
   return (
     <div className="w-full xl:w-[45%]">
       <Card className="h-auto xl:sticky xl:top-4 p-3">
-        {/* Compact toolbar — all buttons in one row */}
+        {/* Compact toolbar — all buttons visible */}
         <div className="flex flex-wrap items-center gap-1.5 mb-3">
           {/* Generate pdf button — primary action */}
           <BaseButton
@@ -49,7 +49,7 @@ const InvoiceActions = () => {
               disabled={invoicePdfLoading}
             >
               <FolderUp className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Load</span>
+              {_t("actions.loadInvoice")}
             </BaseButton>
           </InvoiceLoaderModal>
 
@@ -62,7 +62,7 @@ const InvoiceActions = () => {
               disabled={invoicePdfLoading}
             >
               <Import className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Export</span>
+              {_t("actions.exportInvoice")}
             </BaseButton>
           </InvoiceExportModal>
 
@@ -75,7 +75,7 @@ const InvoiceActions = () => {
               disabled={invoicePdfLoading}
             >
               <Plus className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">New</span>
+              {_t("actions.newInvoice")}
             </BaseButton>
           </NewInvoiceAlert>
 
