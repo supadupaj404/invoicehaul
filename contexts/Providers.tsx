@@ -68,8 +68,8 @@ const Providers = ({ children }: ProvidersProps) => {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="light"
+      forcedTheme="light"
       disableTransitionOnChange
     >
       <TranslationProvider>

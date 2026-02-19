@@ -151,7 +151,7 @@ const SignatureModal = ({}: SignatureModalProps) => {
                                 style={{
                                     width: "300px",
                                 }}
-                                className="flex flex-col justify-center items-center h-[155px] rounded-md bg-gray-100 dark:bg-slate-800 border border-black dark:border-white hover:border-green-500"
+                                className="flex flex-col justify-center items-center h-[155px] rounded-md bg-gray-100 border border-gray-300 hover:border-green-500"
                             >
                                 <FileSignature />
                                 <Label>
