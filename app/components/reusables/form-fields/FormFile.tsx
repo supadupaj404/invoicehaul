@@ -76,21 +76,16 @@ const FormFile = ({ name, label, placeholder }: FormFileProps) => {
                                 src={base64Image}
                                 style={{
                                     objectFit: "contain",
-                                    width: "10rem",
-                                    height: "7rem",
+                                    width: "13rem",
+                                    height: "5rem",
                                 }}
                             />
                         ) : (
-                            <div
-                                style={{
-                                    objectFit: "contain",
-                                    width: "10rem",
-                                    height: "7rem",
-                                }}
-                            >
+                            <div>
                                 <Label
                                     htmlFor={name}
-                                    className="flex justify-center items-center h-[7rem] w-[10rem] cursor-pointer rounded-md bg-gray-100 border border-gray-300 hover:border-green-500"
+                                    className="flex justify-center items-center h-[5rem] w-[13rem] cursor-pointer rounded-md border border-dashed transition-colors hover:border-green-500"
+                                    style={{ borderColor: "#d1cdc7", background: "#f7f5f2" }}
                                 >
                                     <>
                                         <div className="flex flex-col items-center">

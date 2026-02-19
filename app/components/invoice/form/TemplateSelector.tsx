@@ -6,12 +6,6 @@ import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 
 // ShadCn
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
 // Components
@@ -38,82 +32,68 @@ const TemplateSelector = () => {
         {
             id: 1,
             name: "Template 1",
-            description: "Template 1 description",
             img: template1,
             component: <InvoiceTemplate1 {...formValues} />,
         },
         {
             id: 2,
             name: "Template 2",
-            description: "Second template",
             img: template2,
             component: <InvoiceTemplate2 {...formValues} />,
         },
     ];
     return (
-        <>
-            <div>
-                <Label>Choose Invoice Template:</Label>
+        <div>
+            <Label>Choose Invoice Template:</Label>
 
-                <div>
-                    <Card>
-                        <CardHeader>
-                            Templates
-                            <CardDescription>
-                                Select one of the predefined templates
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="">
-                            <div className="flex overflow-x-auto">
-                                {templates.map((template, idx) => (
+            <div className="grid grid-cols-2 gap-4 mt-2">
+                {templates.map((template) => {
+                    const isSelected = formValues.details.pdfTemplate === template.id;
+                    return (
+                        <div
+                            key={template.id}
+                            className="flex flex-col gap-2 cursor-pointer"
+                            onClick={() => setValue("details.pdfTemplate", template.id)}
+                        >
+                            <p className="text-xs font-medium" style={{ color: "#6b7280" }}>
+                                {template.name}
+                            </p>
+
+                            <div className="relative">
+                                {isSelected && (
                                     <div
-                                        key={idx}
-                                        className="flex flex-col flex-shrink-0 mr-4 gap-y-3"
+                                        className="absolute right-2 top-2 rounded-full p-0.5 z-10"
+                                        style={{ background: "#22c55e" }}
                                     >
-                                        <p>{template.name}</p>
-
-                                        <div className="relative">
-                                            {formValues.details.pdfTemplate ===
-                                                template.id && (
-                                                <div className="shadow-lg absolute right-2 top-2 rounded-full bg-green-300">
-                                                    <Check />
-                                                </div>
-                                            )}
-                                            <Image
-                                                src={template.img}
-                                                alt={template.name}
-                                                width={300}
-                                                height={700}
-                                                placeholder="blur"
-                                                className="cursor-pointer rounded-lg border-2 hover:border-green-500"
-                                                onClick={() =>
-                                                    setValue(
-                                                        "details.pdfTemplate",
-                                                        template.id
-                                                    )
-                                                }
-                                            />
-                                            {/* {template.component} */}
-                                        </div>
-
-                                        <BaseButton
-                                            onClick={() =>
-                                                setValue(
-                                                    "details.pdfTemplate",
-                                                    template.id
-                                                )
-                                            }
-                                        >
-                                            Select
-                                        </BaseButton>
+                                        <Check className="w-3.5 h-3.5 text-white" />
                                     </div>
-                                ))}
+                                )}
+                                <Image
+                                    src={template.img}
+                                    alt={template.name}
+                                    width={250}
+                                    height={350}
+                                    placeholder="blur"
+                                    className="w-full h-auto rounded-lg transition-all"
+                                    style={{
+                                        border: isSelected ? "2px solid #22c55e" : "2px solid #e5e1dc",
+                                    }}
+                                />
                             </div>
-                        </CardContent>
-                    </Card>
-                </div>
+
+                            <BaseButton
+                                size="sm"
+                                variant={isSelected ? "default" : "outline"}
+                                className="w-full text-xs"
+                                onClick={() => setValue("details.pdfTemplate", template.id)}
+                            >
+                                {isSelected ? "Selected" : "Select"}
+                            </BaseButton>
+                        </div>
+                    );
+                })}
             </div>
-        </>
+        </div>
     );
 };
 

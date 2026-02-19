@@ -88,8 +88,7 @@ const CurrencySelector = ({
                                                                 currency.code
                                                             }
                                                         >
-                                                            {currency.name}{" "}
-                                                            {`(${currency.code})`}
+                                                            {currency.code}
                                                         </SelectItem>
                                                     )
                                                 )}
