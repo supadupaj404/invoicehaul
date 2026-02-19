@@ -96,7 +96,7 @@ const SavedInvoicesList = ({ setModalState }: SavedInvoicesListProps) => {
                 {savedInvoices.map((invoice, idx) => (
                     <Card
                         key={idx}
-                        className="p-2 border rounded-sm hover:border-blue-500 hover:shadow-lg cursor-pointer"
+                        className="p-2 border rounded-sm hover:border-green-500 hover:shadow-lg cursor-pointer"
                         // onClick={() => handleSelect(invoice)}
                     >
                         <CardContent className="flex justify-between">

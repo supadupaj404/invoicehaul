@@ -33,7 +33,7 @@ const InvoiceTemplate2 = (data: InvoiceType) => {
                         />
                     )}
 
-                    <h1 className="mt-2 text-lg md:text-xl font-semibold text-blue-600">
+                    <h1 className="mt-2 text-lg md:text-xl font-semibold text-green-500">
                         {sender.name}
                     </h1>
                 </div>
@@ -228,7 +228,7 @@ const InvoiceTemplate2 = (data: InvoiceType) => {
             <div>
                 <div className="my-4">
                     <div className="my-2">
-                        <p className="font-semibold text-blue-600">
+                        <p className="font-semibold text-green-500">
                             Additional notes:
                         </p>
                         <p className="font-regular text-gray-800">
@@ -236,7 +236,7 @@ const InvoiceTemplate2 = (data: InvoiceType) => {
                         </p>
                     </div>
                     <div className="my-2">
-                        <p className="font-semibold text-blue-600">
+                        <p className="font-semibold text-green-500">
                             Payment terms:
                         </p>
                         <p className="font-regular text-gray-800">

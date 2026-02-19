@@ -18,7 +18,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
 	return (
 		<InvoiceLayout data={data}>
 			{/* Header — Carrier identity + Invoice title */}
-			<div className='flex justify-between items-start border-b-2 border-blue-600 pb-4 mb-6'>
+			<div className='flex justify-between items-start border-b-2 border-green-500 pb-4 mb-6'>
 				<div>
 					{details.invoiceLogo && (
 						<img
@@ -29,7 +29,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
 							className='mb-2'
 						/>
 					)}
-					<h1 className='text-xl font-bold text-blue-600'>{sender.name}</h1>
+					<h1 className='text-xl font-bold text-green-600'>{sender.name}</h1>
 					{(sender as any).mcNumber && (
 						<p className='text-xs text-gray-500' style={{ fontFamily: "monospace" }}>
 							MC# {(sender as any).mcNumber}
@@ -50,7 +50,7 @@ const InvoiceTemplate = (data: InvoiceType) => {
 				</div>
 				<div className='text-right'>
 					<h2 className='text-3xl font-bold text-gray-800'>INVOICE</h2>
-					<p className='text-lg text-blue-600 mt-1' style={{ fontFamily: "monospace" }}>
+					<p className='text-lg text-green-600 mt-1' style={{ fontFamily: "monospace" }}>
 						#{details.invoiceNumber}
 					</p>
 					{(details as any).loadNumber && (
@@ -199,8 +199,8 @@ const InvoiceTemplate = (data: InvoiceType) => {
 
 			{/* Remittance / Payment Info */}
 			{details.paymentInformation?.bankName && (
-				<div className='mt-6 p-4 rounded-lg border border-blue-200' style={{ backgroundColor: "#eff6ff" }}>
-					<p className='text-xs font-bold uppercase tracking-widest text-blue-600 mb-2'>Remittance Information</p>
+				<div className='mt-6 p-4 rounded-lg border border-green-200' style={{ backgroundColor: "#f0fdf4" }}>
+					<p className='text-xs font-bold uppercase tracking-widest text-green-600 mb-2'>Remittance Information</p>
 					<p className='text-sm text-gray-800'>Bank: {details.paymentInformation.bankName}</p>
 					<p className='text-sm text-gray-800'>Account: {details.paymentInformation.accountName}</p>
 					<p className='text-sm text-gray-800' style={{ fontFamily: "monospace" }}>
@@ -212,12 +212,12 @@ const InvoiceTemplate = (data: InvoiceType) => {
 			{/* Notes + Terms */}
 			<div className='mt-4 grid grid-cols-2 gap-4 text-sm'>
 				<div>
-					<p className='font-semibold text-blue-600'>Payment Terms:</p>
+					<p className='font-semibold text-green-600'>Payment Terms:</p>
 					<p className='text-gray-800'>{details.paymentTerms}</p>
 				</div>
 				{details.additionalNotes && (
 					<div>
-						<p className='font-semibold text-blue-600'>Notes:</p>
+						<p className='font-semibold text-green-600'>Notes:</p>
 						<p className='text-gray-800'>{details.additionalNotes}</p>
 					</div>
 				)}

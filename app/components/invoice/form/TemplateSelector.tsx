@@ -75,7 +75,7 @@ const TemplateSelector = () => {
                                         <div className="relative">
                                             {formValues.details.pdfTemplate ===
                                                 template.id && (
-                                                <div className="shadow-lg absolute right-2 top-2 rounded-full bg-blue-300 dark:bg-blue-600">
+                                                <div className="shadow-lg absolute right-2 top-2 rounded-full bg-green-300 dark:bg-green-500">
                                                     <Check />
                                                 </div>
                                             )}
@@ -85,7 +85,7 @@ const TemplateSelector = () => {
                                                 width={300}
                                                 height={700}
                                                 placeholder="blur"
-                                                className="cursor-pointer rounded-lg border-2 hover:border-blue-600"
+                                                className="cursor-pointer rounded-lg border-2 hover:border-green-500"
                                                 onClick={() =>
                                                     setValue(
                                                         "details.pdfTemplate",

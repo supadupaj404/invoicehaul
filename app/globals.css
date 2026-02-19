@@ -4,9 +4,11 @@
 
 @layer base {
     :root {
-        /* Warm cream base — sibling feel to fueltax.app */
-        --background: 30 20% 95%;
-        --foreground: 0 0% 10%;
+        /* ── InvoiceHaul — Matches fueltax.app design system ───── */
+
+        /* Warm cream base */
+        --background: 30 20% 95%; /* #f5f0eb */
+        --foreground: 0 0% 10%; /* #1a1a1a */
 
         --card: 0 0% 100%;
         --card-foreground: 0 0% 10%;
@@ -14,8 +16,8 @@
         --popover: 0 0% 100%;
         --popover-foreground: 0 0% 10%;
 
-        /* Blue primary — differentiates from fueltax.app green */
-        --primary: 221 83% 53%;
+        /* Green primary — matches fueltax.app */
+        --primary: 142 71% 45%; /* #22c55e */
         --primary-foreground: 0 0% 100%;
 
         --secondary: 30 15% 93%;
@@ -31,9 +33,9 @@
         --destructive-foreground: 0 0% 100%;
 
         /* Warm borders */
-        --border: 30 12% 88%;
+        --border: 30 12% 88%; /* #e5e1dc */
         --input: 30 12% 88%;
-        --ring: 221 83% 53%;
+        --ring: 142 71% 45%; /* green focus ring */
 
         --radius: 0.5rem;
     }
@@ -45,6 +47,12 @@
     }
     body {
         @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
     }
 }
 
@@ -67,8 +75,49 @@ button {
     @apply hidden;
 }
 
-/* Utility class for monospace numeric data */
+/* ── Tabular numbers for data ────────────────────────────── */
 .font-data {
     font-family: 'JetBrains Mono', monospace;
     font-variant-numeric: tabular-nums;
+}
+
+/* ── Custom scrollbar (matches fueltax.app) ──────────────── */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+    background: #d4d0cb;
+    border-radius: 4px;
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.animate-fade-in-up-1 { animation-delay: 0.05s; opacity: 0; }
+.animate-fade-in-up-2 { animation-delay: 0.10s; opacity: 0; }
+.animate-fade-in-up-3 { animation-delay: 0.15s; opacity: 0; }
+.animate-fade-in-up-4 { animation-delay: 0.20s; opacity: 0; }
+
+/* ── Thin separator ──────────────────────────────────────── */
+.road-line {
+    border: none;
+    height: 1px;
+    background: #e5e1dc;
 }
