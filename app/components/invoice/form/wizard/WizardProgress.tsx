@@ -51,7 +51,7 @@ const WizardProgress = ({ wizard }: WizardProgressProps) => {
     ];
 
     return (
-        <div className="flex border-b" style={{ borderColor: "#e5e1dc" }}>
+        <div className="flex gap-1 p-1 rounded-lg" style={{ background: "#f0ece7" }}>
             {steps.map((step) => {
                 const isActive = step.id === activeStep;
                 const hasError = !step.isValid;
@@ -61,22 +61,15 @@ const WizardProgress = ({ wizard }: WizardProgressProps) => {
                         key={step.id}
                         type="button"
                         onClick={() => wizard.goToStep(step.id)}
-                        className="relative flex-1 py-2.5 text-center text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+                        className="flex-1 py-2 px-1 text-center text-xs sm:text-sm font-medium transition-all cursor-pointer rounded-md"
                         style={{
                             color: isActive ? "#1a1a1a" : hasError ? "#ef4444" : "#9ca3af",
-                            fontWeight: isActive ? 700 : 500,
+                            fontWeight: isActive ? 600 : 500,
+                            background: isActive ? "#ffffff" : "transparent",
+                            boxShadow: isActive ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
                         }}
                     >
-                        <span className="hidden sm:inline">{step.id + 1}. </span>
                         {step.label}
-
-                        {/* Active indicator bar */}
-                        {isActive && (
-                            <span
-                                className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full"
-                                style={{ background: "#1a1a1a" }}
-                            />
-                        )}
                     </button>
                 );
             })}
