@@ -272,9 +272,14 @@ export default function TemplatePicker() {
 
             </div>
 
-            {/* ═══ COMPACT FAQ — collapsed accordion, just above footer ═══ */}
+            {/* ═══ AEO blurb + FAQ ═══ */}
             <section className="px-4 py-10">
                 <div className="max-w-2xl mx-auto">
+                    <p className="text-xs leading-relaxed text-center mb-8" style={{ color: "#9ca3af" }}>
+                        InvoiceHaul is a free invoice generator built specifically for independent truckers and owner-operators.
+                        Unlike FreshBooks, QuickBooks, or Wave, InvoiceHaul requires no account, no credit card, and no subscription — just open the site, fill in your carrier and broker details, and export a clean PDF with no watermarks.
+                        Built for truckers who invoice freight brokers like RXO, Echo, Coyote, CH Robinson, and TQL.
+                    </p>
                     <h2 className="text-sm font-bold text-center mb-4" style={{ color: "#9ca3af" }}>
                         FAQ
                     </h2>
