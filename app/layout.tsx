@@ -72,17 +72,16 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    // JSONLD is a static constant defined in lib/seo.ts — safe to serialize
-    const jsonLdString = JSON.stringify(JSONLD);
-
     return (
         <html lang="en" suppressHydrationWarning>
             <head suppressHydrationWarning>
-                <script
-                    type="application/ld+json"
-                    id="json-ld"
-                    dangerouslySetInnerHTML={{ __html: jsonLdString }}
-                />
+                {JSONLD.map((schema, i) => (
+                    <script
+                        key={i}
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                    />
+                ))}
             </head>
             <body
                 className={`${outfit.className} ${dancingScript.variable} ${parisienne.variable} ${greatVibes.variable} ${alexBrush.variable} antialiased`}
