@@ -18,14 +18,13 @@ const InvoiceSummary = () => {
     return (
         <section>
             <Subheading>{_t("form.steps.summary.heading")}:</Subheading>
-            <div className="flex flex-wrap gap-x-5 gap-y-10">
-                <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left column — Signature, Notes, Terms */}
+                <div className="flex flex-col gap-5">
                     <SignatureContextProvider>
-                        {/* Signature dialog */}
                         <SignatureModal />
                     </SignatureContextProvider>
 
-                    {/* Additional notes & Payment terms */}
                     <FormTextarea
                         name="details.additionalNotes"
                         label={_t("form.steps.summary.additionalNotes")}
@@ -38,7 +37,7 @@ const InvoiceSummary = () => {
                     />
                 </div>
 
-                {/* Final charges */}
+                {/* Right column — Charges */}
                 <Charges />
             </div>
         </section>

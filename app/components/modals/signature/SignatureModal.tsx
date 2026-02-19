@@ -130,13 +130,13 @@ const SignatureModal = ({}: SignatureModalProps) => {
 
                         {signature && isDataUrl(signature) ? (
                             <img
-                                className="border border-black rounded-md hover:border-green-500 bg-white"
+                                className="w-full rounded-lg bg-white border transition-colors"
+                                style={{ borderColor: "#d1cdc7" }}
                                 src={signature}
-                                width={300}
                                 alt=""
                             />
                         ) : signature && typedSignature ? (
-                            <div className="flex justify-center items-center w-[300px]">
+                            <div className="flex justify-center items-center w-full">
                                 <p
                                     style={{
                                         fontFamily: selectedFont.variable,
@@ -148,10 +148,8 @@ const SignatureModal = ({}: SignatureModalProps) => {
                             </div>
                         ) : (
                             <div
-                                style={{
-                                    width: "300px",
-                                }}
-                                className="flex flex-col justify-center items-center h-[155px] rounded-md bg-gray-100 border border-gray-300 hover:border-green-500"
+                                className="flex flex-col justify-center items-center w-full h-[130px] rounded-lg border border-dashed transition-colors"
+                                style={{ borderColor: "#d1cdc7", background: "#f7f5f2" }}
                             >
                                 <FileSignature />
                                 <Label>
