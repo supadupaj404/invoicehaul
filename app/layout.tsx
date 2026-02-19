@@ -16,8 +16,6 @@ import {
 import { JSONLD } from "@/lib/seo";
 // Variables
 import { BASE_URL, GOOGLE_SC_VERIFICATION } from "@/lib/variables";
-// Favicon
-import Favicon from "@/public/assets/favicon/favicon.ico";
 import type { Metadata } from "next";
 import "@/app/globals.css";
 
@@ -25,7 +23,23 @@ export const metadata: Metadata = {
     title: "InvoiceHaul | Free Trucker Invoice Generator",
     description:
         "Create professional freight invoices in minutes. Free forever — no credit card, no bait-and-switch. Built for independent truckers and owner-operators.",
-    icons: [{ rel: "icon", url: Favicon.src }],
+    icons: [
+        { rel: "icon", url: "/assets/favicon/favicon.svg", type: "image/svg+xml" },
+        { rel: "icon", url: "/assets/favicon/favicon.ico", sizes: "32x32" },
+        { rel: "apple-touch-icon", url: "/assets/favicon/apple-touch-icon.png" },
+    ],
+    openGraph: {
+        title: "InvoiceHaul | Free Trucker Invoice Generator",
+        description: "Create professional freight invoices in minutes. 100% free — no sign-in, no credit card.",
+        url: "https://invoicehaul.com",
+        siteName: "InvoiceHaul",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "InvoiceHaul | Free Trucker Invoice Generator",
+        description: "Create professional freight invoices in minutes. 100% free — no sign-in, no credit card.",
+    },
     keywords: [
         "trucker invoice",
         "freight invoice generator",
