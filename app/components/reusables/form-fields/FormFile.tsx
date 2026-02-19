@@ -12,13 +12,13 @@ import {
     FormItem,
     FormMessage,
 } from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
+import { FormLabel } from "@/components/ui/form";
 
 // Components
 import { BaseButton } from "@/app/components";
 
 // Icons
-import { ImageMinus, Image } from "lucide-react";
+import { ImageMinus, Image, X } from "lucide-react";
 
 // Types
 import { NameType } from "@/types";
@@ -47,7 +47,7 @@ const FormFile = ({ name, label, placeholder }: FormFileProps) => {
             reader.onload = (event) => {
                 const base64String = event.target!.result as string;
                 setBase64Image(base64String);
-                setValue(name, base64String); // Set the value for form submission
+                setValue(name, base64String);
             };
             reader.readAsDataURL(file);
         }
@@ -63,62 +63,54 @@ const FormFile = ({ name, label, placeholder }: FormFileProps) => {
     };
 
     return (
-        <>
-            <FormField
-                control={control}
-                name={name}
-                render={({ field }) => (
-                    <FormItem>
-                        <Label>{label}:</Label>
-                        {base64Image ? (
-                            <img
-                                id="logoImage"
-                                src={base64Image}
-                                style={{
-                                    objectFit: "contain",
-                                    width: "13rem",
-                                    height: "5rem",
-                                }}
-                            />
-                        ) : (
-                            <div>
-                                <Label
+        <FormField
+            control={control}
+            name={name}
+            render={({ field }) => (
+                <FormItem>
+                    <div className="flex w-full gap-5 items-center text-sm">
+                        <FormLabel className="flex-1">{label}:</FormLabel>
+                        <div className="flex-1">
+                            {base64Image ? (
+                                <div className="relative w-[13rem]">
+                                    <img
+                                        src={base64Image}
+                                        className="w-[13rem] h-[2.5rem] object-contain rounded-md border"
+                                        style={{ borderColor: "#e5e1dc" }}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={removeLogo}
+                                        className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center"
+                                        style={{ background: "#ef4444", color: "#fff" }}
+                                    >
+                                        <X className="w-3 h-3" />
+                                    </button>
+                                </div>
+                            ) : (
+                                <label
                                     htmlFor={name}
-                                    className="flex justify-center items-center h-[5rem] w-[13rem] cursor-pointer rounded-md border border-dashed transition-colors hover:border-green-500"
-                                    style={{ borderColor: "#d1cdc7", background: "#f7f5f2" }}
+                                    className="flex items-center gap-2 h-10 w-[13rem] px-3 cursor-pointer rounded-md border border-dashed text-sm transition-colors hover:border-green-500"
+                                    style={{ borderColor: "#d1cdc7", background: "#f7f5f2", color: "#9ca3af" }}
                                 >
-                                    <>
-                                        <div className="flex flex-col items-center">
-                                            <Image />
-                                            <p>{placeholder}</p>
-                                        </div>
-                                        <FormControl>
-                                            <input
-                                                ref={fileInputRef}
-                                                type="file"
-                                                id={name}
-                                                className="hidden"
-                                                onChange={handleFileChange}
-                                                accept="image/*"
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </>
-                                </Label>
-                            </div>
-                        )}
-                    </FormItem>
-                )}
-            />
-            {base64Image && (
-                <div>
-                    <BaseButton variant="destructive" onClick={removeLogo}>
-                        <ImageMinus />
-                        Remove logo
-                    </BaseButton>
-                </div>
+                                    <Image className="w-4 h-4 shrink-0" />
+                                    <span className="truncate">{placeholder}</span>
+                                    <input
+                                        ref={fileInputRef}
+                                        type="file"
+                                        id={name}
+                                        className="hidden"
+                                        onChange={handleFileChange}
+                                        accept="image/*"
+                                    />
+                                </label>
+                            )}
+                            <FormMessage />
+                        </div>
+                    </div>
+                </FormItem>
             )}
-        </>
+        />
     );
 };
 
