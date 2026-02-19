@@ -25,7 +25,7 @@ const InvoiceActions = () => {
     <div className="w-full xl:w-[45%]">
       <Card className="h-auto xl:sticky xl:top-4 p-3">
         {/* Top bar: Generate + Export */}
-        <div className="flex items-center gap-1.5 mb-3">
+        <div className="flex items-center justify-center gap-1.5 mb-3">
           <BaseButton
             type="submit"
             size="sm"
