@@ -148,7 +148,7 @@ const SignatureModal = ({}: SignatureModalProps) => {
                             </div>
                         ) : (
                             <div
-                                className="flex flex-col justify-center items-center w-full h-[130px] rounded-lg border border-dashed transition-colors"
+                                className="flex flex-col justify-center items-center w-full min-h-[100px] rounded-lg border border-dashed transition-colors"
                                 style={{ borderColor: "#d1cdc7", background: "#f7f5f2" }}
                             >
                                 <FileSignature />
