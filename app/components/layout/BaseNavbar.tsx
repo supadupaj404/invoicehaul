@@ -14,7 +14,7 @@ const BaseNavbar = () => {
     return (
         <header className="sticky top-0 z-[99] px-4 sm:px-6 pt-3">
             <nav
-                className="max-w-6xl mx-auto h-12 flex items-center justify-between px-5 rounded-2xl"
+                className="max-w-6xl mx-auto h-12 relative flex items-center justify-between px-5 rounded-2xl"
                 style={{
                     background: "rgba(255, 255, 255, 0.85)",
                     backdropFilter: "blur(16px)",
@@ -38,15 +38,17 @@ const BaseNavbar = () => {
                     </span>
                 </Link>
 
-                {/* Center: Free badge */}
-                <div
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold"
-                    style={{ background: "#1a1a1a", color: "#ffffff" }}
-                >
+                {/* Center: Free badge — true center */}
+                <div className="hidden sm:flex absolute left-1/2 -translate-x-1/2 pointer-events-none">
+                    <div
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold pointer-events-auto"
+                        style={{ background: "#1a1a1a", color: "#ffffff" }}
+                    >
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12" />
                     </svg>
                     100% Free — No Credit Card
+                    </div>
                 </div>
 
                 {/* DEV Only */}
