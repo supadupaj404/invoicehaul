@@ -6,9 +6,6 @@ import { useFormContext } from "react-hook-form";
 // React Wizard
 import { WizardValues } from "react-use-wizard";
 
-// Components
-import { BaseButton } from "@/app/components";
-
 // Contexts
 import { useTranslationContext } from "@/contexts/TranslationContext";
 
@@ -20,7 +17,7 @@ type WizardProgressProps = {
 };
 
 const WizardProgress = ({ wizard }: WizardProgressProps) => {
-    const { activeStep, stepCount } = wizard;
+    const { activeStep } = wizard;
 
     const {
         formState: { errors },
@@ -45,73 +42,44 @@ const WizardProgress = ({ wizard }: WizardProgressProps) => {
         !errors.details?.taxDetails?.amount &&
         !errors.details?.shippingDetails?.cost;
 
-    /**
-     * Determines the button variant based on the given WizardStepType.
-     *
-     * @param {WizardStepType} step - The wizard step object
-     * @returns The button variant ("destructive", "default", or "outline") based on the step's validity and active status.
-     */
-    const returnButtonVariant = (step: WizardStepType) => {
-        if (!step.isValid) {
-            return "destructive";
-        }
-        return "outline";
-    };
-
-    /**
-     * Checks whether the given WizardStepType has been passed or not.
-     *
-     * @param {WizardStepType} currentStep - The WizardStepType object
-     * @returns `true` if the step has been passed, `false` if it hasn't, or `undefined` if the step is not valid.
-     */
-    const stepPassed = (currentStep: WizardStepType) => {
-        if (currentStep.isValid) {
-            return activeStep > currentStep.id ? true : false;
-        }
-    };
-
     const steps: WizardStepType[] = [
-        {
-            id: 0,
-            label: _t("form.wizard.fromAndTo"),
-            isValid: step1Valid,
-        },
-        {
-            id: 1,
-            label: _t("form.wizard.invoiceDetails"),
-            isValid: step2Valid,
-        },
-        {
-            id: 2,
-            label: _t("form.wizard.lineItems"),
-            isValid: step3Valid,
-        },
-        {
-            id: 3,
-            label: _t("form.wizard.paymentInfo"),
-            isValid: step4Valid,
-        },
-        {
-            id: 4,
-            label: _t("form.wizard.summary"),
-            isValid: step5Valid,
-        },
+        { id: 0, label: _t("form.wizard.fromAndTo"), isValid: step1Valid },
+        { id: 1, label: _t("form.wizard.invoiceDetails"), isValid: step2Valid },
+        { id: 2, label: _t("form.wizard.lineItems"), isValid: step3Valid },
+        { id: 3, label: _t("form.wizard.paymentInfo"), isValid: step4Valid },
+        { id: 4, label: _t("form.wizard.summary"), isValid: step5Valid },
     ];
 
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-            {steps.map((step) => (
-                <BaseButton
-                    key={step.id}
-                    variant={returnButtonVariant(step)}
-                    className={`w-full text-xs sm:text-sm ${step.id === activeStep ? "bg-[#1a1a1a] text-white hover:bg-[#333] border-[#1a1a1a]" : ""}`}
-                    onClick={() => {
-                        wizard.goToStep(step.id);
-                    }}
-                >
-                    {step.id + 1}. {step.label}
-                </BaseButton>
-            ))}
+        <div className="flex border-b" style={{ borderColor: "#e5e1dc" }}>
+            {steps.map((step) => {
+                const isActive = step.id === activeStep;
+                const hasError = !step.isValid;
+
+                return (
+                    <button
+                        key={step.id}
+                        type="button"
+                        onClick={() => wizard.goToStep(step.id)}
+                        className="relative flex-1 py-2.5 text-center text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+                        style={{
+                            color: isActive ? "#1a1a1a" : hasError ? "#ef4444" : "#9ca3af",
+                            fontWeight: isActive ? 700 : 500,
+                        }}
+                    >
+                        <span className="hidden sm:inline">{step.id + 1}. </span>
+                        {step.label}
+
+                        {/* Active indicator bar */}
+                        {isActive && (
+                            <span
+                                className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full"
+                                style={{ background: "#1a1a1a" }}
+                            />
+                        )}
+                    </button>
+                );
+            })}
         </div>
     );
 };

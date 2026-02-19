@@ -9,9 +9,6 @@ import { useFormContext, useWatch } from "react-hook-form";
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -27,13 +24,24 @@ import {
     Items,
     PaymentInformation,
     InvoiceSummary,
+    BaseButton,
+    NewInvoiceAlert,
+    InvoiceLoaderModal,
 } from "@/app/components";
 
 // Contexts
 import { useTranslationContext } from "@/contexts/TranslationContext";
+import { useInvoiceContext } from "@/contexts/InvoiceContext";
+
+// Icons
+import { FolderUp, Plus, RotateCcw } from "lucide-react";
+
+// Types
+import { InvoiceType } from "@/types";
 
 const InvoiceForm = () => {
     const { _t } = useTranslationContext();
+    const { invoicePdfLoading, newInvoice } = useInvoiceContext();
 
     const { control } = useFormContext();
 
@@ -54,23 +62,70 @@ const InvoiceForm = () => {
     return (
         <div className="w-full xl:w-[55%]">
             <Card>
-                <CardHeader>
-                    <div className="flex gap-3">
-                        <CardTitle className="flex items-center gap-3">
-                            <span className="uppercase">
-                                {_t("form.title")}
-                            </span>
-                        </CardTitle>
+                {/* Header row: title left, action buttons right */}
+                <div className="flex items-center justify-between p-4 sm:p-6 pb-3">
+                    <div className="flex items-center gap-2.5">
+                        <h2 className="text-lg font-bold tracking-tight" style={{ color: "#1a1a1a" }}>
+                            Invoice
+                        </h2>
                         <Badge variant="secondary" className="w-fit">
-                            <p style={{ fontSize: "14px" }}>
+                            <p style={{ fontSize: "12px" }}>
                                 {invoiceNumberLabel}
                             </p>
                         </Badge>
                     </div>
-                    <CardDescription>{_t("form.description")}</CardDescription>
-                </CardHeader>
+
+                    {/* Management buttons — top right */}
+                    <div className="flex items-center gap-1">
+                        <InvoiceLoaderModal>
+                            <BaseButton
+                                variant="ghost"
+                                size="sm"
+                                tooltipLabel="Load a saved invoice"
+                                disabled={invoicePdfLoading}
+                                className="h-8 px-2.5 text-xs"
+                                style={{ color: "#6b7280" }}
+                            >
+                                <FolderUp className="w-3.5 h-3.5" />
+                                <span className="hidden sm:inline">Load</span>
+                            </BaseButton>
+                        </InvoiceLoaderModal>
+
+                        <NewInvoiceAlert>
+                            <BaseButton
+                                variant="ghost"
+                                size="sm"
+                                tooltipLabel="Start a new invoice"
+                                disabled={invoicePdfLoading}
+                                className="h-8 px-2.5 text-xs"
+                                style={{ color: "#6b7280" }}
+                            >
+                                <Plus className="w-3.5 h-3.5" />
+                                <span className="hidden sm:inline">New</span>
+                            </BaseButton>
+                        </NewInvoiceAlert>
+
+                        <NewInvoiceAlert
+                            title="Reset form?"
+                            description="This will clear all fields and the saved draft."
+                            confirmLabel="Reset"
+                            onConfirm={newInvoice}
+                        >
+                            <BaseButton
+                                variant="ghost"
+                                size="sm"
+                                tooltipLabel="Reset entire form"
+                                disabled={invoicePdfLoading}
+                                className="h-8 px-2 text-xs text-red-400 hover:text-red-600 hover:bg-red-50"
+                            >
+                                <RotateCcw className="w-3.5 h-3.5" />
+                            </BaseButton>
+                        </NewInvoiceAlert>
+                    </div>
+                </div>
+
                 <CardContent>
-                    <div className="space-y-8">
+                    <div className="space-y-6">
                         <Wizard>
                             <WizardStep>
                                 <div className="flex flex-col md:flex-row gap-8 md:gap-12">
