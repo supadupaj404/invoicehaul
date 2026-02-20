@@ -34,11 +34,13 @@ export const metadata: Metadata = {
         url: "https://invoicehaul.com",
         siteName: "InvoiceHaul",
         type: "website",
+        images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "InvoiceHaul — Free Trucker Invoice Generator" }],
     },
     twitter: {
         card: "summary_large_image",
         title: "InvoiceHaul | Free Trucker Invoice Generator",
         description: "Create professional freight invoices in minutes. 100% free — no sign-in, no credit card.",
+        images: ["/og-image.png"],
     },
     keywords: [
         "trucker invoice",
