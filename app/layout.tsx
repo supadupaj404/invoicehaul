@@ -1,3 +1,6 @@
+// Analytics
+import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 // Components
 import { BaseFooter, BaseNavbar } from "@/app/components";
 // ShadCn
@@ -98,6 +101,22 @@ export default function RootLayout({
 
                     {/* Toast component */}
                     <Toaster />
+
+                    <Analytics />
+
+                    {/* Google Analytics */}
+                    <Script
+                        src="https://www.googletagmanager.com/gtag/js?id=G-7LTFMZMW7G"
+                        strategy="afterInteractive"
+                    />
+                    <Script id="ga-init" strategy="afterInteractive">
+                        {`
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+                          gtag('config', 'G-7LTFMZMW7G');
+                        `}
+                    </Script>
                 </Providers>
             </body>
         </html>
