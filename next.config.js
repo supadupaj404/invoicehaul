@@ -8,6 +8,14 @@ const nextConfig = {
         });
         return config;
     },
+    async rewrites() {
+        return [
+            {
+                source: "/agent",
+                destination: "/api/agent",
+            },
+        ];
+    },
 };
 
 // Bundle analyzer
