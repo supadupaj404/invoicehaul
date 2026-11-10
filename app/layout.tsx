@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 // Components
 import { BaseFooter, BaseNavbar } from "@/app/components";
+import IftaDeadlineBanner from "@/app/components/layout/IftaDeadlineBanner";
 // ShadCn
 import { Toaster } from "@/components/ui/toaster";
 // Contexts
@@ -93,6 +94,7 @@ export default function RootLayout({
                 suppressHydrationWarning
             >
                 <Providers>
+                    <IftaDeadlineBanner />
                     <BaseNavbar />
 
                     <div className="flex flex-col">{children}</div>
